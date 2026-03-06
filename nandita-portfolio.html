@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nandita Rao | Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #09090e;
+      --bg2: #0f0f18;
+      --bg3: #161622;
+      --accent: #e8c97e;
+      --accent2: #9b8ef0;
+      --teal: #5de4c7;
+      --text: #ede9e3;
+      --muted: #6b6b82;
+      --border: rgba(232,201,126,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 5rem;
+      background: rgba(9,9,14,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 5rem; padding-top: 5rem;
+      position: relative; overflow: hidden; gap: 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 85% 40%, rgba(155,142,240,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 70% at 5% 75%, rgba(232,201,126,0.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(232,201,126,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,201,126,0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(232,201,126,0.07);
+      border: 1px solid rgba(232,201,126,0.22);
+      color: var(--accent); font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.45rem 1.1rem; border-radius: 100px;
+      margin-bottom: 2.2rem;
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-badge span {
+      width: 6px; height: 6px;
+      background: var(--accent); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 6vw, 5.8rem);
+      font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-title strong { font-weight: 600; }
+    .hero-sub {
+      font-size: 0.95rem; color: var(--muted);
+      max-width: 460px; line-height: 1.8; margin-bottom: 3rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--accent); color: #09090e;
+      padding: 0.85rem 2.2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 600;
+      font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 35px rgba(232,201,126,0.25); }
+    .btn-secondary {
+      border: 1px solid rgba(237,233,227,0.15); color: var(--text);
+      padding: 0.85rem 2.2rem; border-radius: 4px;
+      text-decoration: none; font-size: 0.8rem; letter-spacing: 0.06em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); background: rgba(232,201,126,0.05); }
+
+    /* HERO CARD */
+    .hero-visual { position: relative; z-index: 1; animation: fadeUp 0.7s 0.25s ease both; }
+    .hero-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem; position: relative; overflow: hidden;
+    }
+    .hero-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .card-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
+    .card-skills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .skill-pill {
+      background: rgba(155,142,240,0.1); border: 1px solid rgba(155,142,240,0.2);
+      color: var(--accent2); font-size: 0.72rem; padding: 0.35rem 0.85rem;
+      border-radius: 100px; letter-spacing: 0.05em;
+    }
+    .skill-pill.gold { background: rgba(232,201,126,0.08); border-color: rgba(232,201,126,0.2); color: var(--accent); }
+    .skill-pill.teal { background: rgba(93,228,199,0.08); border-color: rgba(93,228,199,0.2); color: var(--teal); }
+    .card-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+    .card-stat-row { display: flex; gap: 1rem; }
+    .card-stat { flex: 1; }
+    .card-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+    .card-stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; }
+
+    /* MARQUEE */
+    .marquee-section {
+      padding: 1.5rem 0; overflow: hidden;
+      background: var(--bg2);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .marquee-track {
+      display: flex; gap: 3rem;
+      animation: marquee 22s linear infinite;
+      width: max-content; white-space: nowrap;
+    }
+    .marquee-item {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); display: flex; align-items: center; gap: 1rem;
+    }
+    .marquee-item::after { content: '◆'; color: var(--accent); font-size: 0.45rem; }
+
+    /* SECTIONS */
+    section { padding: 7rem 5rem; position: relative; z-index: 1; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300; letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--muted); font-size: 0.92rem; max-width: 480px; line-height: 1.8; margin-bottom: 4.5rem; }
+
+    /* BRING */
+    .bring-section { background: var(--bg2); }
+    .bring-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    .bring-card {
+      background: var(--bg2); padding: 2.8rem;
+      transition: background 0.25s; position: relative; overflow: hidden;
+    }
+    .bring-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: scaleX(0); transition: transform 0.4s;
+    }
+    .bring-card:hover { background: var(--bg3); }
+    .bring-card:hover::after { transform: scaleX(1); }
+    .bring-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: rgba(232,201,126,0.15); line-height: 1; margin-bottom: 1rem; }
+    .bring-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.8rem; }
+    .bring-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2.8rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .project-card:hover { border-color: rgba(232,201,126,0.35); transform: translateY(-5px); }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-arrow {
+      position: absolute; top: 2.5rem; right: 2.5rem;
+      font-size: 1.1rem; color: var(--accent);
+      opacity: 0; transform: translate(-4px, 4px); transition: opacity 0.25s, transform 0.25s;
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0,0); }
+    .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .ptag { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 100px; border: 1px solid; }
+    .ptag-purple { border-color: rgba(155,142,240,0.3); color: var(--accent2); }
+    .ptag-gold { border-color: rgba(232,201,126,0.3); color: var(--accent); }
+    .ptag-teal { border-color: rgba(93,228,199,0.3); color: var(--teal); }
+    .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; padding-right: 2rem; }
+    .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+    .project-stack { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .stack-pill {
+      background: rgba(237,233,227,0.04); border: 1px solid rgba(237,233,227,0.08);
+      color: var(--muted); font-size: 0.7rem; padding: 0.3rem 0.75rem; border-radius: 4px;
+    }
+    .highlight-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.8rem; gap: 1rem;
+    }
+    .highlight-num { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--accent); line-height: 1; margin-bottom: 0.25rem; }
+    .highlight-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; }
+
+    /* CONTACT */
+    .contact-section { background: var(--bg2); text-align: center; }
+    .contact-inner { max-width: 580px; margin: 0 auto; }
+    .contact-section .section-title { margin: 0 auto 1rem; }
+    .contact-section .section-sub { margin: 0 auto 3rem; max-width: 420px; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 6px;
+      text-decoration: none; color: var(--muted); font-size: 0.82rem; letter-spacing: 0.06em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 5rem; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .footer-copy { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 6rem 2rem 4rem; }
+      .hero-visual { display: none; }
+      section { padding: 5rem 2rem; }
+      .bring-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Nandita.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span></span>
+      Available for internship · May 2026
+    </div>
+    <h1 class="hero-title">
+      Turning <em>Data</em><br>into <strong>Decisions</strong>
+    </h1>
+    <p class="hero-sub">
+      Data analyst blending business strategy with analytical depth —
+      transforming complex datasets into insights that drive real-world impact across industries.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <p class="card-label">Core Expertise</p>
+      <div class="card-skills">
+        <span class="skill-pill gold">Market Analysis</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill teal">AI Strategy</span>
+        <span class="skill-pill">Data Visualization</span>
+        <span class="skill-pill gold">B2B Consulting</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill teal">CRM Analytics</span>
+        <span class="skill-pill">KPI Frameworks</span>
+        <span class="skill-pill gold">Revenue Forecasting</span>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-stat-row">
+        <div class="card-stat">
+          <div class="card-stat-num">2</div>
+          <div class="card-stat-label">Live Projects</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-num">3+</div>
+          <div class="card-stat-label">Industries</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-num">€28K</div>
+          <div class="card-stat-label">Budget Modelled</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Market Analysis</span>
+    <span class="marquee-item">Python</span>
+    <span class="marquee-item">AI Strategy</span>
+    <span class="marquee-item">CRM Analytics</span>
+    <span class="marquee-item">Business Intelligence</span>
+    <span class="marquee-item">KPI Frameworks</span>
+    <span class="marquee-item">Data Visualization</span>
+    <span class="marquee-item">B2B Strategy</span>
+    <span class="marquee-item">HR Analytics</span>
+    <span class="marquee-item">CleanTech</span>
+    <span class="marquee-item">KEDGE Business School</span>
+    <span class="marquee-item">Open Innovation 2025</span>
+    <span class="marquee-item">Market Analysis</span>
+    <span class="marquee-item">Python</span>
+    <span class="marquee-item">AI Strategy</span>
+    <span class="marquee-item">CRM Analytics</span>
+    <span class="marquee-item">Business Intelligence</span>
+    <span class="marquee-item">KPI Frameworks</span>
+    <span class="marquee-item">Data Visualization</span>
+    <span class="marquee-item">B2B Strategy</span>
+    <span class="marquee-item">HR Analytics</span>
+    <span class="marquee-item">CleanTech</span>
+    <span class="marquee-item">KEDGE Business School</span>
+    <span class="marquee-item">Open Innovation 2025</span>
+  </div>
+</div>
+
+<section class="bring-section" id="about">
+  <p class="section-label">What I Bring</p>
+  <h2 class="section-title">Combining analysis<br>with <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--accent)">business impact</em></h2>
+  <p class="section-sub">From AI-driven HR transformation to solar market expansion — I bridge data and decisions across industries.</p>
+  <div class="bring-grid">
+    <div class="bring-card">
+      <div class="bring-num">01</div>
+      <h3>Data-Driven Thinking</h3>
+      <p>Transforming raw datasets into structured insights that support informed business decisions and measurable outcomes.</p>
+    </div>
+    <div class="bring-card">
+      <div class="bring-num">02</div>
+      <h3>Market Intelligence</h3>
+      <p>Deep market analysis, competitive benchmarking, and go-to-market strategies across cleantech, HR tech, and consumer industries.</p>
+    </div>
+    <div class="bring-card">
+      <div class="bring-num">03</div>
+      <h3>Strategic Acumen</h3>
+      <p>Bridging technical execution with business needs — from KPI frameworks to CRM tool recommendations — delivering real impact.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">Featured Projects</p>
+  <h2 class="section-title">Work that<br>speaks for itself</h2>
+  <p class="section-sub">Consulting, machine learning and analytics projects across business strategy, music tech and finance.</p>
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <a class="project-card" href="https://github.com/ShubhamShirsekar/L-Oreal-Hackathon" target="_blank">
+      <span class="project-arrow">→</span>
+      <div class="project-tags">
+        <span class="ptag ptag-purple">Deep Learning</span>
+        <span class="ptag ptag-gold">Green AI</span>
+        <span class="ptag ptag-teal">Hackathon</span>
+      </div>
+      <h3 class="project-title">L'Oréal Skin Condition Classification</h3>
+      <p class="project-desc">
+        Competed in L'Oréal's AI hackathon to build a skin condition classification model using knowledge distillation and Green AI optimisation techniques. Achieved significant model compression with reduced CO₂ emissions while maintaining classification accuracy — demonstrating that sustainable AI and high performance are not mutually exclusive.
+      </p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">PyTorch</span>
+        <span class="stack-pill">TensorFlow</span>
+        <span class="stack-pill">Knowledge Distillation</span>
+        <span class="stack-pill">Green AI</span>
+        <span class="stack-pill">CNN</span>
+      </div>
+      <div class="highlight-bar">
+        <div class="highlight-item">
+          <div class="highlight-num">↓CO₂</div>
+          <div class="highlight-label">Emissions Reduced</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">KD</div>
+          <div class="highlight-label">Knowledge Distillation</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">🏆</div>
+          <div class="highlight-label">Hackathon Project</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- PROJECT 2 -->
+    <a class="project-card" href="https://github.com/ZyadHusseini/Python-Financial-Tracker" target="_blank">
+      <span class="project-arrow">→</span>
+      <div class="project-tags">
+        <span class="ptag ptag-gold">Finance</span>
+        <span class="ptag ptag-purple">Python</span>
+        <span class="ptag ptag-teal">Automation</span>
+      </div>
+      <h3 class="project-title">Python Financial Tracker</h3>
+      <p class="project-desc">
+        Built a personal finance tracking application in Python that automates income and expense logging, categorisation and reporting. Provides visual summaries of spending patterns and budget health, enabling data-driven personal financial decisions through clean dashboards and automated alerts.
+      </p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Pandas</span>
+        <span class="stack-pill">Data Visualisation</span>
+        <span class="stack-pill">Automation</span>
+        <span class="stack-pill">Finance</span>
+      </div>
+      <div class="highlight-bar">
+        <div class="highlight-item">
+          <div class="highlight-num">Auto</div>
+          <div class="highlight-label">Expense Logging</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">📊</div>
+          <div class="highlight-label">Visual Reports</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">100%</div>
+          <div class="highlight-label">Python</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- PROJECT 3 -->
+    <a class="project-card" href="https://github.com/nandita-222/MLI-Spotify-Project/tree/main/MLI_Spotify_Project_Task1" target="_blank">
+      <span class="project-arrow">→</span>
+      <div class="project-tags">
+        <span class="ptag ptag-teal">Machine Learning</span>
+        <span class="ptag ptag-purple">Classification</span>
+        <span class="ptag ptag-gold">Spotify</span>
+      </div>
+      <h3 class="project-title">Spotify Playlist Reconstruction — Task 1</h3>
+      <p class="project-desc">
+        Reconstructed deleted Spotify playlists from a mixed family account using a two-stage ML classification approach. Predicted missing user and year labels for unlabeled songs by training on audio features, playlist patterns and listening history. Produced reconstructed playlists for 5 users across 7 years (2019–2025) with full confidence scoring and quality validation.
+      </p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Scikit-learn</span>
+        <span class="stack-pill">Pandas</span>
+        <span class="stack-pill">Classification</span>
+        <span class="stack-pill">Feature Engineering</span>
+        <span class="stack-pill">Jupyter</span>
+      </div>
+      <div class="highlight-bar">
+        <div class="highlight-item">
+          <div class="highlight-num">5</div>
+          <div class="highlight-label">Users Classified</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">7yrs</div>
+          <div class="highlight-label">Data Range</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">46</div>
+          <div class="highlight-label">Output Files</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- PROJECT 4 -->
+    <a class="project-card" href="https://github.com/nandita-222/MLI-Spotify-Project/tree/main/MLI_Spotify_Project_Task2" target="_blank">
+      <span class="project-arrow">→</span>
+      <div class="project-tags">
+        <span class="ptag ptag-teal">Machine Learning</span>
+        <span class="ptag ptag-purple">Enhancement</span>
+        <span class="ptag ptag-gold">Spotify</span>
+      </div>
+      <h3 class="project-title">Spotify Playlist Reconstruction — Task 2</h3>
+      <p class="project-desc">
+        Extended the Task 1 model with advanced feature engineering and enhanced classification techniques. Implemented additional audio feature extraction, model optimisation and a comprehensive usage guide for reproducibility. Delivered detailed enhancement summaries and feature references documenting the full analytical pipeline.
+      </p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Scikit-learn</span>
+        <span class="stack-pill">Pandas</span>
+        <span class="stack-pill">Model Optimisation</span>
+        <span class="stack-pill">Feature Reference</span>
+        <span class="stack-pill">Jupyter</span>
+      </div>
+      <div class="highlight-bar">
+        <div class="highlight-item">
+          <div class="highlight-num">v2</div>
+          <div class="highlight-label">Enhanced Model</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">3</div>
+          <div class="highlight-label">Docs Generated</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">ML</div>
+          <div class="highlight-label">Pipeline</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card">
+      <span class="project-arrow">→</span>
+      <div class="project-tags">
+        <span class="ptag ptag-purple">AI & HR Tech</span>
+        <span class="ptag ptag-gold">Consulting</span>
+        <span class="ptag ptag-teal">Open Innovation 2025</span>
+      </div>
+      <h3 class="project-title">Boosting CEVA's HR Operations Using AI</h3>
+      <p class="project-desc">
+        Designed an end-to-end AI integration roadmap for CEVA Santé Animale's HR department, covering AI-powered ATS screening, chatbot-driven onboarding, and employee engagement tools including mental health monitoring and personalized wellness programmes. Proposed ReferBuddy.ai — an NLP + ML referral hiring platform — as a B2B SaaS solution, complete with full budget modelling (€7K–€28K), phased rollout strategy, and ethical AI compliance aligned with EU GDPR and the EU AI Act.
+      </p>
+      <div class="project-stack">
+        <span class="stack-pill">NLP</span>
+        <span class="stack-pill">Machine Learning</span>
+        <span class="stack-pill">ATS Systems</span>
+        <span class="stack-pill">EU AI Act</span>
+        <span class="stack-pill">Change Management</span>
+        <span class="stack-pill">Budget Modelling</span>
+      </div>
+      <div class="highlight-bar">
+        <div class="highlight-item">
+          <div class="highlight-num">3</div>
+          <div class="highlight-label">HR Phases Automated</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">€28K</div>
+          <div class="highlight-label">Budget Modelled</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">B2B SaaS</div>
+          <div class="highlight-label">Model Proposed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card">
+      <span class="project-arrow">→</span>
+      <div class="project-tags">
+        <span class="ptag ptag-teal">Market Strategy</span>
+        <span class="ptag ptag-gold">Commercial Analysis</span>
+        <span class="ptag ptag-purple">CleanTech</span>
+      </div>
+      <h3 class="project-title">Optipus PV EnergySkin — India Market Expansion</h3>
+      <p class="project-desc">
+        Developed a full commercial strategy for Optipus PV, a flexible solar film startup, targeting entry into South India's cleantech market. Delivered a 5P marketing analysis, competitive benchmarking against global OPV leaders (Heliatek, Mitsubishi, ASCA), sector opportunity mapping across e-bikes, wearables and audio, and FY 2025–26 revenue forecasts for key partners (Simple Energy, boAt, Steelbird). Built a SMART KPI framework and Zoho CRM implementation roadmap for scalable B2B partner acquisition.
+      </p>
+      <div class="project-stack">
+        <span class="stack-pill">Market Analysis</span>
+        <span class="stack-pill">CRM Strategy</span>
+        <span class="stack-pill">KPI Frameworks</span>
+        <span class="stack-pill">Revenue Forecasting</span>
+        <span class="stack-pill">Competitive Benchmarking</span>
+        <span class="stack-pill">Zoho CRM</span>
+      </div>
+      <div class="highlight-bar">
+        <div class="highlight-item">
+          <div class="highlight-num">€300K</div>
+          <div class="highlight-label">Pipeline Target</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">5</div>
+          <div class="highlight-label">Sectors Mapped</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-num">50%</div>
+          <div class="highlight-label">Conversion Baseline</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <p class="section-label" style="text-align:center">Let's Connect</p>
+    <h2 class="section-title">Open to opportunities<br>starting <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--accent)">May 2026</em></h2>
+    <p class="section-sub" style="margin:0 auto 3rem; max-width:420px;">
+      I'm actively seeking an end-of-studies internship in data analytics or business intelligence.
+      If you're looking for someone who bridges data with strategy, let's talk.
+    </p>
+    <a href="/cdn-cgi/l/email-protection#bad4dbd4ded3cedbfadfd7dbd3d694d9d5d7" class="btn-primary">Get in Touch →</a>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/nandita-rao-99009825a/" target="_blank" class="contact-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/nandita-222" target="_blank" class="contact-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Nandita.</a>
+  <p class="footer-copy">© 2026 Nandita Rao · Data
